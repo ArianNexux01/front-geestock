@@ -1,0 +1,16 @@
+# Enable rewriting
+RewriteEngine On
+
+# Set the base path (if your app is not hosted at the root of the domain)
+# RewriteBase /
+
+# Rewrite requests to the index.html file
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [L,QSA]
+
+# Set caching headers for static assets (adjust the expiration time as needed)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+</IfModule>
